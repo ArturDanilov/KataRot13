@@ -16,49 +16,28 @@ namespace KataRot13
         public string Converter(string  str)
         {
             str = str.ToUpper();
+            str = str.Replace("Ö", "OE");
+            str = str.Replace("Ä", "AE");
+            str = str.Replace("Ü", "UE");
+            str = str.Replace("ß", "SS");
+
             char[] charArray = str.ToCharArray();
 
             for (int i = 0; i < charArray.Length; i++)
-            {                
-                if(charArray[i] == ' ' || charArray[i] == ',')
+            {
+                if (charArray[i] >= indexBuchstabeA && charArray[i] <= indexBuchstabeZ)
                 {
-                    i++;
-                }
-
-                if (charArray[i] >= indexBuchstabeA && charArray[i] <= indexBuchstabeZ - verschlüsselungSchicht)
-                {
-                    charArray[i] = (char)(charArray[i] + verschlüsselungSchicht);
-                }
-                else
-                {
-                    if (charArray[i] == ' ')
+                    if (charArray[i] >= indexBuchstabeZ - verschlüsselungSchicht)
                     {
-                        i++;
+                        charArray[i] = (char)((charArray[i] - indexBuchstabeA + verschlüsselungSchicht) % 26 + indexBuchstabeA);
                     }
-                    charArray[i] = (char)(indexBuchstabeA + (verschlüsselungSchicht - (indexBuchstabeZ - charArray[i]) - 1));
+                    else
+                    {
+                        charArray[i] = (char)(charArray[i] + verschlüsselungSchicht);
+                    }                    
                 }
-
             }
             return new string(charArray);
-
-            //foreach (var item in str)
-            //{
-            //    int index;
-
-            //    if (ABC.Contains(item))
-            //    {
-            //        if (item != ' ' && item != ',' && item != '!')
-            //        {
-            //            index = ABC.IndexOf(item);
-            //            temp += ABC[index + 13].ToString().ToUpper();
-            //        }
-            //        else
-            //        {
-            //            temp += item;
-            //        }
-            //    }               
-            //}
-            //return temp;
         }
     }
 }

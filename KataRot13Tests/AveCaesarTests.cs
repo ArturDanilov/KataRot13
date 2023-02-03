@@ -41,6 +41,14 @@ namespace KataRot13Tests
         }
 
         [Test]
+        public void Converter_Eingabe_o_ReturnB()
+        {
+            var actual = _aveCaesar.Converter("o");
+
+            Assert.That(actual, Is.EqualTo("B"));
+        }
+
+        [Test]
         public void Converter_Eingabe_Hello_ReturnURYYB()
         {
             var actual = _aveCaesar.Converter("Hello");
@@ -70,6 +78,47 @@ namespace KataRot13Tests
             var actual = _aveCaesar.Converter("Hello, World!");
 
             Assert.That(actual, Is.EqualTo("URYYB, JBEYQ!"));
+        }
+
+        [Test]
+        public void Converter_Eingabe_Ö_ReturnOE()
+        {
+            var actual = _aveCaesar.Converter("Ö");
+
+            Assert.That(actual, Is.EqualTo("BR"));
+        }
+
+        [Test]
+        public void Converter_Eingabe_Ä_ReturnAE()
+        {
+            var actual = _aveCaesar.Converter("Ä");
+
+            Assert.That(actual, Is.EqualTo("NR"));
+
+        }
+
+        [Test]
+        public void Converter_Eingabe_ß_ReturnSS()
+        {
+            var actual = _aveCaesar.Converter("ß");
+
+            Assert.That(actual, Is.EqualTo("FF"));
+        }
+
+        [Test]
+        public void Converter_Eingabe_Ü_ReturnUE()
+        {
+            var actual = _aveCaesar.Converter("Ü");
+
+            Assert.That(actual, Is.EqualTo("HR"));
+        }
+
+        [Test]
+        public void Converter_Eingabe_HalöchenComaSüß_ReturnUE()
+        {
+            var actual = _aveCaesar.Converter("Hallöchen, Süß");
+
+            Assert.That(actual, Is.EqualTo("UNYYBRPURA, FHRFF"));
         }
     }
 }
